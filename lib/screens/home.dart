@@ -31,9 +31,6 @@ class _DashboardState extends State<Dashboard> {
       "metric": "-",
     }
   };
-  // var selectedNode = {
-  //   'id': 380392851, 'name': 'node3', 'monitoring': {'cpu': 5.1, 'memory': 18.3, 'bandwidth': {'outbound': 11192.983315685335, 'inbound': 8643.793942755594}}
-  // };
 
   var selectedNodeId = '';
   var selectedNodeCpu = '';
@@ -63,8 +60,6 @@ class _DashboardState extends State<Dashboard> {
 
     final response = await http.get(Uri.parse('http://localhost:9000/v2/system'));
 
-    // final response = await http.get(Uri.parse('https://emojihub.yurace.pro/api/random'));
-
     print("Response body: ${response.body}");
     setState(() {
       nodes = jsonDecode(response.body);
@@ -76,7 +71,6 @@ class _DashboardState extends State<Dashboard> {
     String heading = "Current state of the system";
 
     int totalNodes = nodes.length;
-    // print(totalNodes);
 
     List<String> nodeNames = [];
     nodes.forEach((key, value) {
@@ -86,13 +80,6 @@ class _DashboardState extends State<Dashboard> {
     });
 
     print("Nodes 76: $nodes");
-
-    // nodes.forEach((key, value) {
-    //   for(var node in value){
-    //     nodeNames.add(node['name']);
-    //     print(node);
-    //   }
-    // });
 
     List<String> headings = ["CPU: ", "Network: ", "Memory: ", "View more"];
 
@@ -290,85 +277,5 @@ class _DashboardState extends State<Dashboard> {
   void dispose() {
     timer?.cancel();
     super.dispose();
-  }
-
-  fetchNodes() {
-    return {
-      "376457674": {
-        "cpu_percent": {
-          "metric": 16.837,
-          "start_timestamp": 1695855960,
-          "end_timestamp": 1695855840
-        },
-        "network_percent": {
-          "incoming": 40,
-          "outgoing": 50
-        },
-        "memory_usage_percent": {
-          "metric": 43.35463474634031,
-          "timestamp": 1695855960
-        }
-      },
-      "376880265": {
-        "cpu_percent": {
-          "metric": 14.888,
-          "start_timestamp": 1695855960,
-          "end_timestamp": 1695855840
-        },
-        "network_percent": {
-          "incoming": 30,
-          "outgoing": 25
-        },
-        "memory_usage_percent": {
-          "metric": 9.14376958003287,
-          "timestamp": 1695855960
-        }
-      },
-      "376880266": {
-        "cpu_percent": {
-          "metric": 12.662,
-          "start_timestamp": 1695855960,
-          "end_timestamp": 1695855840
-        },
-        "network_percent": {
-          "incoming": 18,
-          "outgoing": 36
-        },
-        "memory_usage_percent": {
-          "metric": 9.435021612011143,
-          "timestamp": 1695855960
-        }
-      },
-      "376880267": {
-        "cpu_percent": {
-          "metric": 16.321,
-          "start_timestamp": 1695855960,
-          "end_timestamp": 1695855840
-        },
-        "network_percent": {
-          "incoming": 14.6,
-          "outgoing": 15
-        },
-        "memory_usage_percent": {
-          "metric": 9.999990045105626,
-          "timestamp": 1695855960
-        }
-      },
-      "376880268": {
-        "cpu_percent": {
-          "metric": 18.561,
-          "start_timestamp": 1695855960,
-          "end_timestamp": 1695855840
-        },
-        "network_percent": {
-          "incoming": 15.6,
-          "outgoing": 45
-        },
-        "memory_usage_percent": {
-          "metric": 10.4690045105626,
-          "timestamp": 1695855960
-        }
-      }
-    };
   }
 }
